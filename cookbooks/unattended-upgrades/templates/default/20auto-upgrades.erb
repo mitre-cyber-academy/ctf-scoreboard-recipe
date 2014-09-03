@@ -1,0 +1,2 @@
+APT::Periodic::Update-Package-Lists "<%=node['unattended-upgrades']['update_package_lists_interval']%>";
+APT::Periodic::Unattended-Upgrade "<%=node['unattended-upgrades']['upgrade_interval']%>";
