@@ -2,30 +2,51 @@ root      = File.expand_path("..", __FILE__)
 solo_json = File.join(root, "node.json")
 
 Vagrant.configure("2") do |config|
-	# Every Vagrant virtual environment requires a box to build off of.
-	# The url from where the 'config.vm.box' box will be fetched if it
-	# doesn't already exist on the user's system.
-	#
+
+  # Install required plugins
+  plugins = ["vagrant-omnibus", "vagrant-berkshelf"]
+  # Vagrant does not detect new plugins right away. In order to get around this, if we 
+  # have added any plugins then we simply set reload to true and tell the user to re-run
+  # the vagrant command.
+  reload = false
+  plugins.each do |plugin|
+    # Split so that we can specify plugin versions in the plugins array without breaking the script
+    if !Vagrant.has_plugin?(plugin.split("--").first.strip)
+      reload = true
+      puts "Installing #{plugin}..."
+      print %x(vagrant plugin install #{plugin})
+      if !$?.success?
+        puts "Plugin installation failed. Please fix any errors above and try again."
+        exit
+      end
+    end 
+  end
+  if reload
+    puts "Done installing plugins, however they cannot be accessed until the vagrant command is re-run."
+    puts "Please re-run your vagrant command..."
+    exit
+  end
+
   # Install the latest version of Chef (uses https://github.com/schisamo/vagrant-omnibus)
   config.omnibus.chef_version = :latest
 
-  config.vm.box = "hashicorp/precise64"
-  config.vm.network :forwarded_port, guest: 443, host: 4343, auto_correct: true
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.network :forwarded_port, guest: 1194, host: 11194, auto_correct: true
 
-	config.vm.provider :virtualbox do |vb|
-		vb.customize ["modifyvm", :id, 
-			"--memory", "1024", 
-			"--cpus", "2",
-			"--ioapic", "on"
-		]
-	end
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, 
+      "--memory", "1024", 
+      "--cpus", "2",
+      "--ioapic", "on"
+    ]
+  end
 
-	config.vm.provision :chef_solo do |chef|
-		chef.cookbooks_path = "cookbooks"
-		chef.json = JSON.parse(File.open(solo_json, &:read))
-		chef.json["user"] = "ubuntu"
-		chef.json["run_list"].each do |recipe_name|
-			chef.add_recipe recipe_name
-		end
-	end
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "cookbooks"
+    chef.log_level = :debug
+    chef.json = JSON.parse(File.open(solo_json, &:read))
+    chef.json["run_list"].each do |recipe_name|
+      chef.add_recipe recipe_name
+    end
+  end
 end

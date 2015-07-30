@@ -1,7 +1,0 @@
-path:   "."
-username:   "ubuntu"
-flavor_id:  "r3.xlarge"
-image_id:   "ami-8eb061e6"
-private_ip_address: "10.0.0.42"
-tags:
-    Name:  "Scoreboard Recipe"
