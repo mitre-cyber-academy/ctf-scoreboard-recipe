@@ -5,7 +5,7 @@ DEPENDENCIES
     branch: selfSignedFixes
   rails-app
     git: https://github.com/mitre-cyber-academy/rails-app-cookbook.git
-    revision: 182cc15726186c030b57932a2d4addd1c979e17e
+    revision: 8364b70f619638f9bf7687c9b59ac5042f0f3b1a
   scoreboard
     path: .
     metadata: true
