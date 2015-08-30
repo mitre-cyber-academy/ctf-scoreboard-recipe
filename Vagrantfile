@@ -45,6 +45,8 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path = "cookbooks"
     chef.log_level = :debug
     chef.json = JSON.parse(File.open(solo_json, &:read))
+    # We always want ssl off when debugging with vagrant
+    chef.json["rails-app"]["ssl"] = false
     chef.json["run_list"].each do |recipe_name|
       chef.add_recipe recipe_name
     end

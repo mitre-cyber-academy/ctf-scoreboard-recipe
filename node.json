@@ -3,7 +3,9 @@
     "compile_time_update" : true
 },
   "rails-app" : {
-    "ssl" : false
+    "ssl" : true,
+    "name" : "hs-scoreboard",
+    "address" : "hs-scoreboard.mitrestemctf.org"
   },
   "run_list": [ "recipe[scoreboard::allow-outbound]", "recipe[rails-app]", "recipe[unattended-upgrades]", "recipe[firewall]", "recipe[ufw]", "recipe[scoreboard]" ]
 }
