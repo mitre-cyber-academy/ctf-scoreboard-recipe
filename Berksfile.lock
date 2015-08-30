@@ -1,8 +1,7 @@
 DEPENDENCIES
   rails-app
     git: https://github.com/mitre-cyber-academy/rails-app-cookbook.git
-    revision: 1cd9176a61d683d2264e89cce7ac50ef3f555c16
-    branch: updateDependencies
+    revision: cc1f388bc6b19541b0ecdfb69ce794420c57c650
   scoreboard
     path: .
     metadata: true
