@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
   config.omnibus.chef_version = :latest
 
   config.vm.box = "ubuntu/trusty64"
-  config.vm.network :forwarded_port, guest: 1194, host: 11194, auto_correct: true
+  config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, 
