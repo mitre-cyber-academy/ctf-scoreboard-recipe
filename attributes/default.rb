@@ -26,6 +26,6 @@ default['firewall']['rules'] = [
 ]
 default['firewall']['securitylevel'] = ""
 default["rails-app"]["repository"] = "https://github.com/mitre-cyber-academy/ctf-scoreboard.git"
-default["rails-app"]["revision"] = "ruby-and-rails-update"
+default["rails-app"]["revision"] = "master"
 default["rails-app"]["ssl"] = true
 default["scoreboard"]["user"] = "ubuntu"
