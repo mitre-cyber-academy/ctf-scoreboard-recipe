@@ -28,6 +28,16 @@ cron 'backup_scoreboard_database' do
   command "cd #{rails_app_path} && RAILS_ENV=production bundle exec rake scoreboard:db:backup"
 end
 
+bash "seed-scoreboard" do
+  user "root"
+  cwd rails_app_path
+  code <<-EOH
+    RAILS_ENV=production bundle exec rake db:seed
+    rm -f db/seeds.rb
+  EOH
+  only_if { ::File.exists?("#{rails_app_path}/db/seeds.rb") }
+end
+
 # open access with ufw for port 80
 firewall_rule "http" do
   port 80
