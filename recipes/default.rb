@@ -8,7 +8,7 @@ end
 directory "/opt/keys" do
   owner node["scoreboard"]["user"]
   group node["scoreboard"]["user"]
-  mode 00755
+  mode 00777
   action :create
 end
 
