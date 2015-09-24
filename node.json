@@ -1,9 +1,0 @@
-{
-	"user": "ubuntu",
-	"pgsql-version": "9.2",
-	"passenger-version": "4.0.48",
-	"apt" : {
-		"compile_time_update" : true
-	},
-	"run_list": [ "recipe[apt]", "recipe[unattended-upgrades]", "recipe[yum]", "recipe[git]", "recipe[firewall]", "recipe[ufw]", "recipe[fail2ban]", "recipe[postgres]", "recipe[ruby-build]", "recipe[scoreboard]" ]
-}

@@ -1,3 +1,14 @@
+.vagrant
+/cookbooks
+
+# Bundler
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
+
+# Mac
 .DS_Store
 
 # Thumbnails
