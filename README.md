@@ -9,10 +9,6 @@ If you want to run this recipe on your server without using a full chef server i
 * `curl -L https://www.chef.io/chef/install.sh | sudo bash` # Install chef
 * `cd scoreboard-recipe` # Enter directory containing this code
 * `berks vendor cookbooks` # fetch all cookbook dependencies and place in the cookbooks directory.
-* `sudo chef-client -z -j node.json` # Run the chef client in standalone mode using the node.json provided.
+* `sudo chef-client -z -j (hs|college)-node.json` # Run the chef client in standalone mode using the hs and college node.json provided.
 
-## To Do
-
-* Update recipe to use Berkshelf.
-* Update scoreboard to be downloaded from GitHub instead of using a local copy.
-* Update to use official cookbooks instead of ours.
+Note: When deploying this for an actual CTF, you can run 2 instances of the scoreboard side-by-side on the same machine, all you need to do is execute `sudo chef-client -z -j` on both the hs and college node.json files. They will not conflict with one another.
