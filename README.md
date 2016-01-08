@@ -5,8 +5,10 @@ This is a cookbook that allows for the automated creation of a scoreboard for th
 ## Commands to use this recipe for deployment
 
 If you want to run this recipe on your server without using a full chef server install, you can use the following commands.
+[b]Note:[/b] Do not use the ChefDK, it does not work properly with this cookbook!
 
 * `curl -L https://www.chef.io/chef/install.sh | sudo bash` # Install chef
+* `gem install berkshelf` # May require installation of ruby if no system ruby is present
 * `cd scoreboard-recipe` # Enter directory containing this code
 * `berks vendor cookbooks` # fetch all cookbook dependencies and place in the cookbooks directory.
 * `sudo chef-client -z -j (hs|college)-node.json` # Run the chef client in standalone mode using the hs and college node.json provided.
