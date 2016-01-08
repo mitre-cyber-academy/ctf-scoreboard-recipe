@@ -1,5 +1,5 @@
 root      = File.expand_path("..", __FILE__)
-solo_json = File.join(root, "node.json")
+solo_json = File.join(root, "college-node.json")
 
 Vagrant.configure("2") do |config|
 
